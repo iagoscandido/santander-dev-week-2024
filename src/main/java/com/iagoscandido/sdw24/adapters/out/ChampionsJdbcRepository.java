@@ -1,4 +1,4 @@
-package com.iagoscandido.sdw24.domain.adapters.out;
+package com.iagoscandido.sdw24.adapters.out;
 
 import com.iagoscandido.sdw24.domain.model.Champion;
 import com.iagoscandido.sdw24.domain.ports.ChampionsRepository;
@@ -33,7 +33,7 @@ public class ChampionsJdbcRepository implements ChampionsRepository {
     @Override
     public Optional<Champion> findById(Long id) {
         String sql = "SELECT * FROM CHAMPIONS WHERE ID = ?";
-        Champion champion = jdbcTemplate.queryForObject(sql,rowMapper, id);
-        return Optional.ofNullable(champion);
+        List<Champion> champions = jdbcTemplate.query(sql,rowMapper, id);
+        return champions.stream().findFirst();
     }
 }

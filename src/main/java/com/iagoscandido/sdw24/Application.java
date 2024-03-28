@@ -1,6 +1,7 @@
 package com.iagoscandido.sdw24;
 
-import com.iagoscandido.sdw24.domain.application.ListChampionsUseCase;
+import com.iagoscandido.sdw24.application.AskChampionUseCase;
+import com.iagoscandido.sdw24.application.ListChampionsUseCase;
 import com.iagoscandido.sdw24.domain.ports.ChampionsRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,8 +16,12 @@ public class Application {
     }
 
     @Bean
-    public ListChampionsUseCase listChampionsUseCase(ChampionsRepository repository) {
+    public ListChampionsUseCase provideListChampionsUseCase(ChampionsRepository repository) {
         return new ListChampionsUseCase(repository);
+    }
+    @Bean
+    public AskChampionUseCase provideAskChampionUseCase(ChampionsRepository repository) {
+        return new AskChampionUseCase(repository);
     }
 
 }
