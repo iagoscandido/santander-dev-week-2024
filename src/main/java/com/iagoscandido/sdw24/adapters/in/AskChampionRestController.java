@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/champions")
 public record AskChampionRestController(AskChampionUseCase useCase) {
 
-
+    @CrossOrigin
     @PostMapping("/{championId}/ask")
     public askChampionResponse askChampion(
             @PathVariable(name = "championId") Long championId,
